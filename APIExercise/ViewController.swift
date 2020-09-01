@@ -18,8 +18,7 @@ class ViewController: UIViewController {
     var refreshControl = UIRefreshControl()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let url = URL(string: "http://demo0737597.mockable.io/master_data1")
+        let url = URL(string: "http://demo0737597.mockable.io/master_data")
         let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
             if error == nil {
                 do {
@@ -30,9 +29,12 @@ class ViewController: UIViewController {
                         self.lbError2.isHidden = !(self.locations.count == 0)
                         if self.locations.count != 0 {
                             self.lbError2.isHidden = true
-                            //refresh control
-                            self.refreshControl.attributedTitle = NSAttributedString(string: "loading")
-                            self.refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+                            //already add a header view to tableview, so to avoid text override the content when scrolling down
+                            //add refresh control
+                            self.refreshControl.tintColor = UIColor.orange
+                            let attributes = [NSAttributedString.Key.foregroundColor: UIColor.orange]
+                            self.refreshControl.attributedTitle = NSAttributedString(string: "Refreshing Data...", attributes: attributes)
+                            self.refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: UIControl.Event.valueChanged)
                             self.tableView.addSubview(self.refreshControl)
                         } else {
                             self.lbError2.isHidden = false
@@ -51,8 +53,8 @@ class ViewController: UIViewController {
         tableView.dataSource = self
     }
     @objc func refresh(_ sender: UIRefreshControl){
-        sender.endRefreshing()
         self.tableView.reloadData()
+        sender.endRefreshing()
     }
 }
 

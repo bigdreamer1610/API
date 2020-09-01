@@ -32,7 +32,6 @@ class MyCell: UITableViewCell {
         self.lbLocation.text = "Location: \(data.location)"
         self.lbUsername.text = "Username: \(data.userName)"
         //set image
-        
         let imageURL = URL(string: data.image)
         let task = URLSession.shared.dataTask(with: imageURL!) { (data, response, error) in
             if error == nil {
