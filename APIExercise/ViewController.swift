@@ -11,13 +11,19 @@ import UIKit
 class ViewController: UIViewController {
     var  locations = [Location]()
     
+    @IBOutlet var lbInformation: UILabel!
     @IBOutlet var lbError2: UILabel!
     @IBOutlet var lbError: NSLayoutConstraint!
     @IBOutlet var tableView: UITableView!
-    
+    @IBOutlet var blankView: UIView!
+    @IBOutlet var headerTableView: UIView!
+    @IBOutlet var heightConstaint: NSLayoutConstraint!
+    @IBOutlet var indicatorRefresh: UIActivityIndicatorView!
     var refreshControl = UIRefreshControl()
     override func viewDidLoad() {
         super.viewDidLoad()
+        heightConstaint.constant = 0
+        indicatorRefresh.isHidden = true
         let url = URL(string: "http://demo0737597.mockable.io/master_data")
         let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
             if error == nil {
@@ -26,14 +32,16 @@ class ViewController: UIViewController {
                     self.locations = myData.data
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
-                        self.lbError2.isHidden = !(self.locations.count == 0)
                         if self.locations.count != 0 {
                             self.lbError2.isHidden = true
-                            //already add a header view to tableview, so to avoid text override the content when scrolling down
-                            //add refresh control
-                            self.refreshControl.tintColor = UIColor.orange
-                            let attributes = [NSAttributedString.Key.foregroundColor: UIColor.orange]
-                            self.refreshControl.attributedTitle = NSAttributedString(string: "Refreshing Data...", attributes: attributes)
+                            
+                            //my second
+                            
+                            //my first
+                            self.refreshControl.tintColor = UIColor.clear
+                            self.refreshControl.alpha = 0
+                            let attributes = [NSAttributedString.Key.foregroundColor: UIColor.clear]
+                            self.refreshControl.attributedTitle = NSAttributedString(string: "", attributes: attributes)
                             self.refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: UIControl.Event.valueChanged)
                             self.tableView.addSubview(self.refreshControl)
                         } else {
@@ -43,7 +51,7 @@ class ViewController: UIViewController {
                 } catch {
                     print("Wrong")
                 }
-
+                
             }
         }
         task.resume()
@@ -52,9 +60,20 @@ class ViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
     }
+    //refresh data when scrolling down
     @objc func refresh(_ sender: UIRefreshControl){
-        self.tableView.reloadData()
-        sender.endRefreshing()
+        tableView.reloadData()
+        indicatorRefresh.startAnimating()
+        refreshControl.beginRefreshing()
+        indicatorRefresh.isHidden = false
+        heightConstaint.constant = 50
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            //self.refreshControl.endRefreshing()
+            self.heightConstaint.constant = 0
+            self.indicatorRefresh.stopAnimating()
+            self.indicatorRefresh.isHidden = true
+            self.refreshControl.endRefreshing()
+        }
     }
 }
 

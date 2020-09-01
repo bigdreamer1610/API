@@ -15,18 +15,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="20" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OlY-ek-aaw">
-                                <rect key="frame" x="0.0" y="110" width="414" height="200"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pFu-jk-xom">
+                                <rect key="frame" x="0.0" y="110" width="414" height="50"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="2lt-O4-CXe">
+                                        <rect key="frame" x="197" y="15" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="2lt-O4-CXe" firstAttribute="centerX" secondItem="pFu-jk-xom" secondAttribute="centerX" id="HFM-BW-dGc"/>
+                                    <constraint firstAttribute="height" constant="50" id="PeI-Wp-Xz1"/>
+                                    <constraint firstItem="2lt-O4-CXe" firstAttribute="centerY" secondItem="pFu-jk-xom" secondAttribute="centerY" id="Zxv-AN-yAN"/>
+                                    <constraint firstItem="2lt-O4-CXe" firstAttribute="height" secondItem="pFu-jk-xom" secondAttribute="height" multiplier="0.4" id="bpp-NW-dap"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="20" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OlY-ek-aaw">
+                                <rect key="frame" x="0.0" y="160" width="414" height="702"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <view key="tableHeaderView" contentMode="scaleToFill" id="Xvg-Iq-FeL">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                </view>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="wtW-e0-VTo">
-                                    <rect key="frame" x="0.0" y="65" width="414" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 </view>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Information" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Pb-2D-U38">
@@ -45,20 +53,28 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="9Pb-2D-U38" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="7JD-wE-M4d"/>
+                            <constraint firstItem="pFu-jk-xom" firstAttribute="trailing" secondItem="OlY-ek-aaw" secondAttribute="trailing" id="Bf9-Wn-vU7"/>
                             <constraint firstItem="AzM-pw-IHX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Eq8-3b-so1"/>
+                            <constraint firstItem="OlY-ek-aaw" firstAttribute="top" secondItem="pFu-jk-xom" secondAttribute="bottom" id="GmW-8y-X2s"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="OlY-ek-aaw" secondAttribute="trailing" id="P57-uB-cMO"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9Pb-2D-U38" secondAttribute="trailing" constant="50" id="Pbl-ue-qg8"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="OlY-ek-aaw" secondAttribute="bottom" id="Tky-ra-2SU"/>
+                            <constraint firstItem="pFu-jk-xom" firstAttribute="leading" secondItem="OlY-ek-aaw" secondAttribute="leading" id="VYw-fi-c8L"/>
                             <constraint firstItem="AzM-pw-IHX" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="aDY-n1-1kn"/>
                             <constraint firstItem="9Pb-2D-U38" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="d0e-vN-WHk"/>
                             <constraint firstItem="OlY-ek-aaw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="fXi-90-bbu"/>
-                            <constraint firstItem="OlY-ek-aaw" firstAttribute="top" secondItem="9Pb-2D-U38" secondAttribute="bottom" id="r9q-cq-yFd"/>
+                            <constraint firstItem="pFu-jk-xom" firstAttribute="top" secondItem="9Pb-2D-U38" secondAttribute="bottom" id="jfT-UJ-s2D"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="blankView" destination="wtW-e0-VTo" id="qdF-Iq-vP2"/>
+                        <outlet property="headerTableView" destination="pFu-jk-xom" id="8om-xl-rv6"/>
+                        <outlet property="heightConstaint" destination="PeI-Wp-Xz1" id="xZg-Sh-duW"/>
+                        <outlet property="indicatorRefresh" destination="2lt-O4-CXe" id="g71-ZY-7Om"/>
                         <outlet property="lbError" destination="aDY-n1-1kn" id="33V-M0-BCk"/>
                         <outlet property="lbError2" destination="AzM-pw-IHX" id="cey-tL-JtX"/>
+                        <outlet property="lbInformation" destination="9Pb-2D-U38" id="5hU-RP-LNT"/>
                         <outlet property="tableView" destination="OlY-ek-aaw" id="q1l-0t-r6S"/>
                     </connections>
                 </viewController>
